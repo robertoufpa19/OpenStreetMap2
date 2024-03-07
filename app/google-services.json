@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "503500312852",
+    "project_id": "openstreetmap2-d4e75",
+    "storage_bucket": "openstreetmap2-d4e75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503500312852:android:8967192bb78e8706503201",
+        "android_client_info": {
+          "package_name": "com.example.openstreetmap2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwO2aGMJyIawKIkmKw83MzMKkxLzD4lIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,3 @@
+
+rootProject.name = "OpenStreetMap2"
+include ':app'
