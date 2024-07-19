@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 
 import org.osmdroid.api.IMapController;
@@ -39,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
     private MapView mapView;
     private IMapController mapController;
 
+    //Cria um ponto de referência com base na latitude e longitude
+    // Exemplo de coordenadas UFPA Belém: R. Augusto Corrêa, 01 - Guamá, Belém - PA, 66075-110
+    private GeoPoint pontoInicial = new GeoPoint(-2.2478831914134654, -49.505085540790915);
+
+    //Cria um ponto de referência final com base na latitude e longitude
+    // Exemplo de coordenadas UFPA Belém: Tv. Três de Maio, 1573 - São Brás, Belém - PA, 66063-390
+    private GeoPoint pontoFinalUFPACameta = new GeoPoint(-2.246507196553819, -49.50431199886905);
+
+    private Marker markerBus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,43 +68,74 @@ public class MainActivity extends AppCompatActivity {
         mapView.setMultiTouchControls(true);
         // Configurar o controlador do mapa
         mapController = mapView.getController();
-        mapController.setZoom(15);
-        mapView.invalidate();
-
-            //Cria um ponto de referência com base na latitude e longitude
-            // Exemplo de coordenadas UFPA Belém: R. Augusto Corrêa, 01 - Guamá, Belém - PA, 66075-110
-            GeoPoint pontoInicialUFPABelemGuama = new GeoPoint(-1.4755185896289333, -48.457223630625094);
-
-            //Cria um ponto de referência final com base na latitude e longitude
-            // Exemplo de coordenadas UFPA Belém: Tv. Três de Maio, 1573 - São Brás, Belém - PA, 66063-390
-            GeoPoint pontoFinalUFPABelemSaoBras = new GeoPoint(-1.4534120639444839, -48.472881666124124);
+        mapController.setZoom(20);
+        mapController.setCenter(pontoInicial);
 
 
 
-            //Centraliza o mapa no ponto de referência
-            mapController.setCenter(pontoInicialUFPABelemGuama);
-
-            //Cria um marcador no mapa ponto inicial
-            Marker startMarker = new Marker(mapView);
-            startMarker.setPosition(pontoInicialUFPABelemGuama);
-            startMarker.setTitle("UFPA - Guamá");
-            //Posição do ícone
-            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        mapView.getOverlays().add(startMarker);
-
-            //Cria um marcador no mapa ponto final
-            Marker andtMarker = new Marker(mapView);
-            andtMarker.setPosition(pontoFinalUFPABelemSaoBras);
-            andtMarker.setTitle("UFPA - São Brás");
-            //Posição do ícone
-            andtMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        mapView.getOverlays().add(andtMarker);
-
-
-        gerarRotasOSM(pontoInicialUFPABelemGuama, pontoFinalUFPABelemSaoBras);
+        addMarkers();
+        drawRoute();
 
 
     }
+
+    private void addMarkers() {
+        Marker startMarker = new Marker(mapView);
+        startMarker.setPosition(pontoInicial);
+        //startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        startMarker.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.pontoonibus64));
+        startMarker.setTitle("Start Point");
+        mapView.getOverlays().add(startMarker);
+
+        Marker endMarker = new Marker(mapView);
+        endMarker.setPosition(pontoFinalUFPACameta);
+        //endMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        endMarker.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.pontoonibus64));
+        endMarker.setTitle("End Point");
+        mapView.getOverlays().add(endMarker);
+
+        // Adding bus marker
+        markerBus = new Marker(mapView);
+        markerBus.setPosition(pontoInicial);
+       // markerBus.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        markerBus.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.iconsonibus64));
+        markerBus.setTitle("Bus");
+        mapView.getOverlays().add(markerBus);
+    }
+
+
+    private void drawRoute() {
+        RoadManager roadManager = new OSRMRoadManager(this, "MyApp/1.0");
+        ArrayList<GeoPoint> waypoints = new ArrayList<>();
+        waypoints.add(pontoInicial);
+        waypoints.add(pontoFinalUFPACameta);
+        new Thread(() -> {
+            Road road = roadManager.getRoad(waypoints);
+            runOnUiThread(() -> {
+                roadOverlay = RoadManager.buildRoadOverlay(road);
+                mapView.getOverlays().add(roadOverlay);
+                animateBus(roadOverlay.getPoints());
+            });
+        }).start();
+    }
+
+    private void animateBus(ArrayList<GeoPoint> points) {
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            int index = 0;
+            @Override
+            public void run() {
+                if (index < points.size()) {
+                    markerBus.setPosition(points.get(index));
+                    mapView.invalidate();
+                    index++;
+                    handler.postDelayed(this, 500); // Atraso de 500 ms para animação suave
+                }
+            }
+        };
+        handler.post(runnable);
+    }
+
 
 
     private void gerarRotasOSM(GeoPoint origem, GeoPoint destino) {

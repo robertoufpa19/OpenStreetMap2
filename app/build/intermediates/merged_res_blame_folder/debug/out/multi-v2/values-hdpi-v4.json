@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.openstreetmap2.app-mergeDebugResources-31:/values-hdpi-v4/values-hdpi-v4.xml",
+            "outputFile": "com.example.openstreetmap2.app-mergeDebugResources-32:/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rober\\.gradle\\caches\\transforms-3\\bb9a15dc2d341d4cd202f2b34d517aab\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",

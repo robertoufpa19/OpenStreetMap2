@@ -3002,6 +3002,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable iconsonibus64
 drawable location_end
 drawable location_green
 drawable location_start
@@ -3016,6 +3017,7 @@ drawable m3_tabs_background
 drawable m3_tabs_line_indicator
 drawable m3_tabs_rounded_line_indicator
 drawable m3_tabs_transparent_background
+drawable marker_cluster
 drawable marker_default
 drawable marker_default_focused_base
 drawable material_cursor_drawable
@@ -3087,6 +3089,7 @@ drawable osm_ic_follow_me
 drawable osm_ic_follow_me_on
 drawable osm_ic_ic_map_ortho
 drawable person
+drawable pontoonibus64
 drawable previous
 drawable round_navigation_white_48
 drawable sharp_add_black_36
@@ -3974,6 +3977,32 @@ string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string my_location
 string offline
+string osmbonuspack_directions_1
+string osmbonuspack_directions_12
+string osmbonuspack_directions_17
+string osmbonuspack_directions_18
+string osmbonuspack_directions_19
+string osmbonuspack_directions_2
+string osmbonuspack_directions_24
+string osmbonuspack_directions_27
+string osmbonuspack_directions_28
+string osmbonuspack_directions_29
+string osmbonuspack_directions_3
+string osmbonuspack_directions_30
+string osmbonuspack_directions_31
+string osmbonuspack_directions_32
+string osmbonuspack_directions_33
+string osmbonuspack_directions_34
+string osmbonuspack_directions_4
+string osmbonuspack_directions_5
+string osmbonuspack_directions_6
+string osmbonuspack_directions_7
+string osmbonuspack_directions_8
+string osmbonuspack_format_distance_kilometers
+string osmbonuspack_format_distance_meters
+string osmbonuspack_format_hours
+string osmbonuspack_format_minutes
+string osmbonuspack_format_seconds
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -5271,3 +5300,4 @@ styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration
 styleable include constraintSet
 xml backup_rules
 xml data_extraction_rules
+xml network_security_config

@@ -4,9 +4,11 @@ color black
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable iconsonibus64
 drawable location_end
 drawable location_green
 drawable location_start
+drawable pontoonibus64
 id mapView
 layout activity_main
 mipmap ic_launcher
@@ -22,3 +24,4 @@ style Base.Theme.OpenStreetMap2
 style Theme.OpenStreetMap2
 xml backup_rules
 xml data_extraction_rules
+xml network_security_config

@@ -1,4 +1,4 @@
-#Thu Jul 18 22:12:14 BRT 2024
+#Fri Jul 19 09:29:38 BRT 2024
 base.0=C\:\\Users\\rober\\AndroidStudioProjects\\OpenStreetMap2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\rober\\AndroidStudioProjects\\OpenStreetMap2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\rober\\AndroidStudioProjects\\OpenStreetMap2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
