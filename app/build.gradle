@@ -42,6 +42,8 @@ dependencies {
 
     // openstreetmap
     implementation 'org.osmdroid:osmdroid-android:6.1.13'
+    implementation 'com.github.MKergall:osmbonuspack:6.9.0' // extensão para a biblioteca de mapas OpenStreetMap (OSM) diversas funcionalidades no mapa osm
+
 
 
 
