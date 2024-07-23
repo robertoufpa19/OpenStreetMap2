@@ -31,6 +31,9 @@ import static android.os.Build.VERSION_CODES.M;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by roberto on 2024.
+ */
 public class MainActivity extends AppCompatActivity {
     private static final int PERMISSAO_REQUERIDA = 1;
 
@@ -41,11 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private IMapController mapController;
 
     //Cria um ponto de referência com base na latitude e longitude
-    // Exemplo de coordenadas UFPA Belém: R. Augusto Corrêa, 01 - Guamá, Belém - PA, 66075-110
+    //Coordenadas TV. paulo nogueira
     private GeoPoint pontoInicial = new GeoPoint(-2.2478831914134654, -49.505085540790915);
-
-    //Cria um ponto de referência final com base na latitude e longitude
-    // Exemplo de coordenadas UFPA Belém: Tv. Três de Maio, 1573 - São Brás, Belém - PA, 66063-390
+    // coordenadas UFPA cametá
     private GeoPoint pontoFinalUFPACameta = new GeoPoint(-2.246507196553819, -49.50431199886905);
 
     private Marker markerBus;
@@ -113,7 +114,15 @@ public class MainActivity extends AppCompatActivity {
             Road road = roadManager.getRoad(waypoints);
             runOnUiThread(() -> {
                 roadOverlay = RoadManager.buildRoadOverlay(road);
+
+                // Configurar a cor, espesura e a transparência da linha da rota:
+                Paint paint = roadOverlay.getOutlinePaint();
+                paint.setStrokeWidth(10); // espesura da linha
+                paint.setColor(Color.argb(120, 0, 100, 255));
+
                 mapView.getOverlays().add(roadOverlay);
+
+
                 animateBus(roadOverlay.getPoints());
             });
         }).start();
